@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: authserver
+        uri: http://localhost:8080
+        predicates:
+        - Path=/auth/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "https://localhost:4200"
+            allowedMethods:
+            - POST
