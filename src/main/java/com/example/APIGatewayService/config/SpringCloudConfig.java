@@ -17,4 +17,14 @@ public class SpringCloudConfig {
 	                .build();
 
 	    }
+
+	@Bean
+	public RouteLocator wgatewayRoutes(RouteLocatorBuilder routeLocatorBuilder)
+	{
+		return routeLocatorBuilder.routes()
+				.route("AuthServiceModule", rt -> rt.path("/api/**")
+						.uri("http://localhost:8084/"))
+				.build();
+
+	}
 }
