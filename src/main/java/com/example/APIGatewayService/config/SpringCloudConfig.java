@@ -13,18 +13,20 @@ public class SpringCloudConfig {
 	    {
 	        return routeLocatorBuilder.routes()
 	                .route("AuthServiceModule", rt -> rt.path("/auth/**")
-	                        .uri("http://localhost:8080/"))
+	                        .uri("http://authservice:8080/"))
+					.route("AuthServiceModule", rt -> rt.path("/api/**")
+							.uri("http://tweetservice:8084/"))
 	                .build();
 
 	    }
 
-	@Bean
-	public RouteLocator wgatewayRoutes(RouteLocatorBuilder routeLocatorBuilder)
-	{
-		return routeLocatorBuilder.routes()
-				.route("AuthServiceModule", rt -> rt.path("/api/**")
-						.uri("http://localhost:8084/"))
-				.build();
-
-	}
+//	@Bean
+//	public RouteLocator wgatewayRoutes(RouteLocatorBuilder routeLocatorBuilder)
+//	{
+//		return routeLocatorBuilder.routes()
+//				.route("AuthServiceModule", rt -> rt.path("/api/**")
+//						.uri("http://tweetservice:8084/"))
+//				.build();
+//
+//	}
 }
